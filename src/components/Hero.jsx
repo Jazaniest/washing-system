@@ -1,108 +1,90 @@
 import React from 'react'
 import { Sparkles, Clock, Shield, Heart } from 'lucide-react';
+import bubbleCover from '../assets/bubble2.jpg'
 
 const Hero = () => {
   return (
-    <section className="pt-32 pb-20 px-6 bg-linear-to-br from-blue-50 via-white to-cyan-50 min-h-screen flex items-center">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="space-y-8 animate-fade-in">
-            <div className="inline-block">
-              <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold">
-                ✨ Layanan Laundry Premium
-              </span>
+    <section className="relative pt-16 sm:pt-20 min-h-screen flex items-center overflow-hidden">
+      {/* Background Cover Image */}
+      <div className="absolute inset-0 z-0">
+        {/* Uncomment dan ganti dengan path image Anda */}
+        <img 
+          src={bubbleCover}
+          alt="FreshClean Laundry Cover" 
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 w-full px-4 sm:px-6 py-16 sm:py-2">
+        <div className="max-w-5xl mx-auto text-center space-y-6 sm:space-y-10">
+          {/* Badge */}
+          <div className="inline-block animate-fade-in">
+            <span className="px-4 sm:px-6 py-2 sm:py-3 bg-white/20 backdrop-blur-md text-white rounded-full text-xs sm:text-sm font-semibold border border-white/30 shadow-xl">
+              ✨ Layanan Laundry Lengkap
+            </span>
+          </div>
+          
+          {/* Main Heading */}
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-bold leading-tight text-white drop-shadow-2xl px-2">
+            Kendaraan Bersih,
+            <span className="block bg-linear-to-r from-cyan-300 via-blue-200 to-white bg-clip-text text-transparent">
+              Perjalanan Nyaman
+            </span>
+          </h1>
+          
+          {/* Subheading */}
+          <p className="text-base sm:text-xl lg:text-2xl text-white/90 leading-relaxed max-w-3xl mx-auto drop-shadow-[0_4px_6px_rgba(0,0,0,0.9)] font-light px-4">
+            Layanan cuci motor, mobil, dan karpet dengan teknologi modern untuk hasil
+            yang bersih, rapi, dan tahan lama.
+          </p>
+
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 pt-6 sm:pt-8 max-w-4xl mx-auto">
+            <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+              <Clock className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-300 mx-auto mb-2 sm:mb-3" />
+              <h3 className="font-bold text-white text-sm sm:text-lg mb-0.5 sm:mb-1">Cepat</h3>
+              <p className="text-xs sm:text-sm text-white drop-shadow-lg">24 Jam Selesai</p>
             </div>
             
-            <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-              Cucian Bersih,
-              <span className="block bg-linear-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                Hati Tenang
-              </span>
-            </h1>
-            
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Nikmati layanan laundry profesional dengan teknologi modern dan 
-              perawatan maksimal untuk setiap pakaian Anda. Kami hadir untuk 
-              memberikan kemudahan dan kualitas terbaik.
-            </p>
-
-            {/* Features */}
-            <div className="grid grid-cols-2 gap-6 pt-4">
-              <div className="flex items-start space-x-3">
-                <div className="p-2 bg-blue-100 rounded-lg">
-                  <Clock className="w-5 h-5 text-blue-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Cepat & Tepat</h3>
-                  <p className="text-sm text-gray-600">Selesai 24 jam</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="p-2 bg-cyan-100 rounded-lg">
-                  <Shield className="w-5 h-5 text-cyan-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Aman Terpercaya</h3>
-                  <p className="text-sm text-gray-600">Jaminan kualitas</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="p-2 bg-purple-100 rounded-lg">
-                  <Heart className="w-5 h-5 text-purple-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Perawatan Lembut</h3>
-                  <p className="text-sm text-gray-600">Bahan premium</p>
-                </div>
-              </div>
-              
-              <div className="flex items-start space-x-3">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <Sparkles className="w-5 h-5 text-green-600" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Harum & Wangi</h3>
-                  <p className="text-sm text-gray-600">Parfum berkualitas</p>
-                </div>
-              </div>
+            <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+              <Shield className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-300 mx-auto mb-2 sm:mb-3" />
+              <h3 className="font-bold text-white text-sm sm:text-lg mb-0.5 sm:mb-1">Aman</h3>
+              <p className="text-xs sm:text-sm text-white drop-shadow-lg">Jaminan Kualitas</p>
             </div>
-
-            <div className="flex gap-4 pt-4">
-              <button className="px-8 py-4 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 hover:scale-105 shadow-xl shadow-blue-600/30">
-                Pesan Sekarang
-              </button>
-              <button className="px-8 py-4 bg-white text-gray-700 rounded-full font-semibold hover:bg-gray-50 transition-all duration-300 border-2 border-gray-200">
-                Lihat Harga
-              </button>
+            
+            <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+              <Heart className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-300 mx-auto mb-2 sm:mb-3" />
+              <h3 className="font-bold text-white text-sm sm:text-lg mb-0.5 sm:mb-1">Care</h3>
+              <p className="text-xs sm:text-sm text-white drop-shadow-lg">Care Protection</p>
+            </div>
+            
+            <div className="bg-white/10 backdrop-blur-md rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/20 hover:bg-white/20 transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+              <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-cyan-300 mx-auto mb-2 sm:mb-3" />
+              <h3 className="font-bold text-white text-sm sm:text-lg mb-0.5 sm:mb-1">Bersih</h3>
+              <p className="text-xs sm:text-sm text-white drop-shadow-lg">Bersih Berkualitas</p>
             </div>
           </div>
 
-          {/* Right Content - Image Placeholder */}
-          <div className="relative">
-            <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl bg-linear-to-br from-blue-200 to-cyan-200">
-              {/* Placeholder untuk cover image */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center space-y-4 p-8">
-                  <Sparkles className="w-20 h-20 mx-auto text-white opacity-50" />
-                  <p className="text-white text-lg font-medium opacity-75">
-                    Tempatkan foto cover Anda di sini
-                  </p>
-                  <p className="text-white text-sm opacity-60">
-                    Rekomendasi: 800x800px, format JPG/PNG
-                  </p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Decorative Elements */}
-            <div className="absolute -top-6 -right-6 w-24 h-24 bg-blue-400 rounded-full blur-3xl opacity-50"></div>
-            <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-cyan-400 rounded-full blur-3xl opacity-50"></div>
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-6 sm:pt-8 px-4">
+            <button className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-cyan-400 rounded-full font-bold text-base sm:text-lg hover:bg-cyan-50 transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-white/50 w-full sm:w-auto">
+              Pesan Sekarang
+            </button>
+            <button className="px-8 sm:px-10 py-4 sm:py-5 bg-white/10 backdrop-blur-md text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/20 transition-all duration-300 border-2 border-white/30 hover:scale-105 shadow-2xl w-full sm:w-auto">
+              Lihat Harga
+            </button>
           </div>
         </div>
       </div>
+
+      {/* Bottom Wave Decoration */}
+      {/* <div className="absolute bottom-0 left-0 right-0 z-10">
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
+          <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+        </svg>
+      </div> */}
     </section>
   );
 };
