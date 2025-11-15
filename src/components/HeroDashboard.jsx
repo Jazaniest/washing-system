@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Car, Bike, Package, ChevronDown, Receipt, CreditCard, Check } from 'lucide-react';
 
 const HeroDashboard = () => {
-  const [step, setStep] = useState('form'); // 'form', 'receipt', 'payment', 'success'
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
+  const [step, setStep] = useState('form'); 
   const [formData, setFormData] = useState({
     jenisKendaraan: '',
     jenisLayanan: '',
@@ -26,6 +28,13 @@ const HeroDashboard = () => {
   };
 
   const handlePayment = () => {
+    setShowPaymentModal(true);
+  };
+
+  const processPayment = () => {
+    if (!selectedPaymentMethod) return;
+    
+    setShowPaymentModal(false);
     setStep('payment');
     setTimeout(() => {
       setStep('success');
@@ -39,6 +48,7 @@ const HeroDashboard = () => {
       aroma: '',
       catatan: ''
     });
+    setSelectedPaymentMethod('');
     setStep('form');
   };
 
@@ -295,6 +305,7 @@ const HeroDashboard = () => {
   // Receipt View
   if (step === 'receipt') {
     return (
+      <>
       <section className="relative pt-16 sm:pt-20 min-h-screen flex items-center overflow-hidden bg-linear-to-br from-cyan-500 via-blue-500 to-blue-600">
         <div className="absolute inset-0 z-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -363,6 +374,73 @@ const HeroDashboard = () => {
           </div>
         </div>
       </section>
+
+      {showPaymentModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
+            <div className="text-center mb-6">
+              <div className="bg-cyan-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CreditCard className="w-8 h-8 text-cyan-600" />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800">Pilih Metode Pembayaran</h2>
+            </div>
+
+            <div className="bg-cyan-50 rounded-xl p-4 mb-6 border-2 border-cyan-200">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-700 font-medium">Total:</span>
+                <span className="text-2xl font-bold text-cyan-600">
+                  Rp {getHarga().toLocaleString('id-ID')}
+                </span>
+              </div>
+            </div>
+
+            <div className="space-y-3 mb-6">
+              {['Tunai 💵', 'QRIS 📱', 'Kartu Debit 💳', 'E-Wallet 👛'].map((method) => (
+                <button
+                  key={method}
+                  onClick={() => setSelectedPaymentMethod(method)}
+                  className={`w-full p-4 rounded-xl border-2 transition-all ${
+                    selectedPaymentMethod === method
+                      ? 'border-cyan-500 bg-cyan-50'
+                      : 'border-gray-200 hover:border-cyan-300'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium text-gray-700">{method}</span>
+                    {selectedPaymentMethod === method && (
+                      <Check className="w-5 h-5 text-cyan-600" />
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => {
+                  setShowPaymentModal(false);
+                  setSelectedPaymentMethod('');
+                }}
+                className="flex-1 py-3 px-6 rounded-xl font-bold bg-gray-200 text-gray-700"
+              >
+                Batal
+              </button>
+              <button
+                onClick={processPayment}
+                disabled={!selectedPaymentMethod}
+                className={`flex-1 py-3 px-6 rounded-xl font-bold ${
+                  !selectedPaymentMethod
+                    ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                    : 'bg-linear-to-r from-cyan-500 to-blue-500 text-white'
+                }`}
+              >
+                Bayar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      </>
     );
   }
 
