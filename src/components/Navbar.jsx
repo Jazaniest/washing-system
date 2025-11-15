@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Sparkles, X, Mail, Lock, User, Phone, House } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
+const Navbar = ({ showLoginModal, setShowLoginModal, showRegisterModal, setShowRegisterModal }) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {

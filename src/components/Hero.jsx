@@ -1,8 +1,10 @@
-import React from 'react'
-import { Sparkles, Clock, Shield, Heart } from 'lucide-react';
+import React, {useState} from 'react'
+import { Sparkles, Clock, Shield, Heart, X } from 'lucide-react';
 import bubbleCover from '../assets/bubble2.jpg'
 
-const Hero = () => {
+const Hero = ({ setShowLoginModal }) => {
+  const [showPriceModal, setShowPriceModal] = useState(false);
+
   return (
     <section className="relative pt-16 sm:pt-20 min-h-screen flex items-center overflow-hidden">
       {/* Background Cover Image */}
@@ -69,22 +71,89 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center pt-6 sm:pt-8 px-4">
-            <button className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-cyan-400 rounded-full font-bold text-base sm:text-lg hover:bg-cyan-50 transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-white/50 w-full sm:w-auto">
+            <button
+              onClick={() => setShowLoginModal(true)}
+              className="px-8 sm:px-10 py-4 sm:py-5 bg-white text-cyan-400 rounded-full font-bold text-base sm:text-lg hover:bg-cyan-50 transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-white/50 w-full sm:w-auto">
               Pesan Sekarang
             </button>
-            <button className="px-8 sm:px-10 py-4 sm:py-5 bg-white/10 backdrop-blur-md text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/20 transition-all duration-300 border-2 border-white/30 hover:scale-105 shadow-2xl w-full sm:w-auto">
+            <button 
+              onClick={() => setShowPriceModal(true)}
+              className="px-8 sm:px-10 py-4 sm:py-5 bg-white/10 backdrop-blur-md text-white rounded-full font-bold text-base sm:text-lg hover:bg-white/20 transition-all duration-300 border-2 border-white/30 hover:scale-105 shadow-2xl w-full sm:w-auto">
               Lihat Harga
             </button>
           </div>
         </div>
       </div>
 
-      {/* Bottom Wave Decoration */}
-      {/* <div className="absolute bottom-0 left-0 right-0 z-10">
-        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto">
-          <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
-        </svg>
-      </div> */}
+      {/* Price Modal */}
+      {showPriceModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl mx-4 p-8 relative max-h-[90vh] overflow-y-auto">
+            <button 
+              onClick={() => setShowPriceModal(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+              <X className="w-6 h-6" />
+            </button>
+            
+            <div className="text-center mb-8">
+              <h2 className="text-3xl font-bold text-gray-800 mb-2">Daftar Harga</h2>
+            </div>
+
+            <div className="space-y-6">
+              {/* Mobil */}
+              <div className="border-2 border-cyan-100 rounded-xl p-6 hover:border-cyan-400 transition-all">
+                <h3 className="text-xl font-bold text-cyan-600 mb-4">Mobil</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Cuci Reguler</span>
+                    <span className="font-bold text-gray-800">Rp 75.000</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Detailing</span>
+                    <span className="font-bold text-gray-800">Rp 150.000</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Motor */}
+              <div className="border-2 border-cyan-100 rounded-xl p-6 hover:border-cyan-400 transition-all">
+                <h3 className="text-xl font-bold text-cyan-600 mb-4">Motor</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Cuci Reguler</span>
+                    <span className="font-bold text-gray-800">Rp 25.000</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Detailing</span>
+                    <span className="font-bold text-gray-800">Rp 50.000</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Karpet */}
+              <div className="border-2 border-cyan-100 rounded-xl p-6 hover:border-cyan-400 transition-all">
+                <h3 className="text-xl font-bold text-cyan-600 mb-4">Karpet</h3>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Cuci Reguler</span>
+                    <span className="font-bold text-gray-800">Rp 50.000</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-700">Cuci Kilat</span>
+                    <span className="font-bold text-gray-800">Rp 80.000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 p-4 bg-cyan-50 rounded-lg">
+              <p className="text-sm text-gray-600 text-center">
+                💡 <span className="font-semibold">Tip:</span> Detailing memberikan hasil maksimal dengan perawatan menyeluruh
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
